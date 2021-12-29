@@ -38,6 +38,8 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   context.res.setHeader('Cache-Control', 'stale-while-revalidate=5');
 
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   const postId = context.query.postId;
   if (!postId)
     return {
