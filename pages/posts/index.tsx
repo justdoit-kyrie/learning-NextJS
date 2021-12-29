@@ -1,7 +1,7 @@
-import { GetStaticProps, GetStaticPropsContext } from "next";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { GetStaticProps, GetStaticPropsContext } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 export interface PostsListPageProps {}
 
@@ -10,12 +10,12 @@ export default function PostsListPage(props: PostsListPageProps) {
   const [postList, setPostList] = useState([]);
   const page = Number(router.query.page);
 
-  console.log("Router query", router.query);
+  console.log('Router query', router.query);
 
   const handleNextPage = () => {
     router.push(
       {
-        pathname: "/posts",
+        pathname: '/posts',
         query: {
           page: (page || 1) + 1,
         },
@@ -31,9 +31,7 @@ export default function PostsListPage(props: PostsListPageProps) {
     if (!page) return;
 
     (async () => {
-      const response = await fetch(
-        `https://js-post-api.herokuapp.com/api/posts?_page=${page}`
-      );
+      const response = await fetch(`https://js-post-api.herokuapp.com/api/posts?_page=${page}`);
 
       const { data } = await response.json();
 
@@ -59,10 +57,8 @@ export default function PostsListPage(props: PostsListPageProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
-  console.log("GET STATIC PROPS");
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+  console.log('GET STATIC PROPS');
 
   return {
     props: {},

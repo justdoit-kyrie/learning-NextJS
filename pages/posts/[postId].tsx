@@ -1,5 +1,5 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
-import * as React from "react";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import * as React from 'react';
 
 export interface PostDetailPageProps {
   post: any;
@@ -34,19 +34,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
   const postId = context.params?.postId;
-  console.log("GET STATIC PROPS", postId);
+  console.log('GET STATIC PROPS', postId);
   if (!postId)
     return {
       props: {},
     };
 
-  const response = await fetch(
-    `https://js-post-api.herokuapp.com/api/posts/${postId}`
-  );
+  const response = await fetch(`https://js-post-api.herokuapp.com/api/posts/${postId}`);
 
   const data = await response.json();
 
